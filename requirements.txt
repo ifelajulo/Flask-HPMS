@@ -4,3 +4,13 @@ Flask-Assets
 jsmin
 cssmin
 Flask-MongoEngine
+gunicorn
+Flask-WTF
+SQLAlchemy
+Flask-SQLAlchemy
+sqlalchemy-migrate
+Flask-Mail
+Flask-Admin
+flask-security
+flask-migrate
+psycopg2

@@ -1,4 +1,4 @@
-from application import app
+from application import app, pdb
 from flask import redirect
 from flask import url_for
 from flask import flash
@@ -6,6 +6,8 @@ from flask import render_template
 from flask.ext.login import login_user
 from flask import request
 from application.forms.login import LoginForm
+#from application.models.user import User
+#from application.models.nurse import Nurse
 from application.models.user import User
 from flask.ext.login import login_required
 from flask.ext.login import logout_user
@@ -13,56 +15,107 @@ from flask.ext.login import current_user
 
 
 @app.route('/')
-def index():
+def site_index():
     if current_user.is_authenticated():
         # redirect, load a different template...
-        pass
+        print "PATIENTS!"
+        print current_user.patients
+        return redirect("dashboard")
+        #return render_template('site/dashboard.html')
     return render_template('site/index.html')
+    #return redirect('login')
 
+
+@app.route('/dashboard')
+def staff_dashboard():
+
+    print "CURRENTLY IN THE DASHBOARD BRUH."
+    print current_user.patients
+    print current_user.patients.count()
+    return render_template('site/dashboard.html')
 
 @app.route('/login', methods=['GET', 'POST'])
-def login():
+def site_login():
     form = LoginForm()
     if form.validate_on_submit():
-        try:
-            user = User.objects.get(email=request.form['email'])
+        print "Attempting to login"
+        print "In the login statement."
+        user2 = User.query.filter_by(staff_id=request.form['email']).first()
+        print "Queried."
 
-            if user.verify_password(request.form['password']):
-                login_user(user)
+        print user2
+
+        if user2.verify_password(request.form['password']):
+
+            print "SUCCESS!"
+
+            print "Attempting to actually login!"
+            login_user(user2)
+            print "Logged in?"
+            flash('Logged in successfully.', 'success')
+
+            print "CORRECT!"
+            return redirect(request.args.get('next') or url_for('site_index'))
+        else:
+            print "ERROR"
+            flash('Username or password is incorrect', 'error')
+        try:
+            #user = User.objects.get(email=request.form['email'])
+            print "In the login statement."
+            user2 = User.query.filter_by(staff_id=request.form['email']).first()
+            print "Queried."
+
+            print user2
+
+            if user2.verify_password(request.form['password']):
+
+                print "SUCCESS!"
+
+                print "Attempting to actually login!"
+                login_user(user2)
+                print "Logged in?"
                 flash('Logged in successfully.', 'success')
 
-                return redirect(request.args.get('next') or url_for('index'))
+                print "CORRECT!"
+                return redirect(request.args.get('next') or url_for('site_index'))
             else:
+                print "ERROR"
                 flash('Username or password is incorrect', 'error')
-        except User.DoesNotExist:
+        except:
             flash('Username or password is incorrect', 'error')
+
     return render_template('site/login.html', form=form)
 
 
 @app.route('/logout')
 @login_required
-def logout():
+def site_logout():
     logout_user()
-    return redirect(url_for('index'))
+    return redirect(url_for('site_index'))
 
 
 @app.route('/register', methods=['GET', 'POST'])
-def register():
+def site_register():
     form = LoginForm()
     if form.validate_on_submit():
         try:
-            user = User.objects.get(email=request.form['email'])
-            if user:
+            #user = User.objects.get(email=request.form['email'])
+            nurse = User.objects.get(staff_id=request.form['email'])
+            if nurse:
                 flash('This email address is already in use.', 'error')
             return render_template('site/login.html', form=form)
 
-        except User.DoesNotExist:
+        except:
             user = User()
             user.email = request.form['email']
             user.username = request.form['email']
+            user.staff_id=request.form['email']
             user.set_password(request.form['password'])
-            user.save()
+            pdb.session.add(user)
+            pdb.session.commit()
+            
 
             flash('Successfully registered', 'success')
-            return redirect(url_for('index'))
+            return redirect(url_for('site_index'))
+    
     return render_template('site/login.html', form=form)

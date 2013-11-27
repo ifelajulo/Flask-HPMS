@@ -5,5 +5,57 @@
 {% endblock %}
 
 {% block content %}
-    <h2>Hello {% if current_user.is_authenticated() %}{{ current_user.username }}{% else %}World{% endif %}!</h2>
+
+	{% if current_user.is_authenticated() %}
+              <div class="row">
+                <div class="alert alert-info alert-dismissable">
+                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                  <strong>Main Doctor:</strong> You are reporting to Doctor Smith!
+                </div>
+              </div>
+ 	<div class="row">
+ 		<div class="col-md-2">  
+			<ul class="nav nav-pills nav-stacked">  
+			<li class="active">  
+			
+                    <a href="#" class="">
+                      Patient 1
+                    </a></li>     
+			<li><a href="#">Tutorials</a></li>  
+			<li><a href="#">Practice Editor </a></li>   
+			<li><a href="#">Gallery</a></li>   
+			<li><a href="#">Contact</a></li>   
+			</ul>  
+		</div>
+
+		<div class="col-md-9">
+              <div class="row">
+                <div class="col-md-9">
+                  <div class="main-section">
+                    <div class="container">
+                      <h1>Selected Patient Info</h1>
+                  </div>
+                  </div>
+                </div>
+
+                <div class="col-md-3">
+                  <div class="med-section">
+                    <h3>Patient Medicine Info</h3>
+                  </div>
+                </div>
+                </div>
+
+            </div>
+		</div>
+
+ 	</div>
+	{% else %}
+
+	<h2>Please Login!</h2>
+	{% endif %}
+	<div id="left"></div>
+
+	<div id="center"></div>
+	<div id="right"></div>
+   
 {% endblock %}

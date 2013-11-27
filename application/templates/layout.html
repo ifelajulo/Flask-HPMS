@@ -13,22 +13,16 @@
 
     <link rel="shortcut icon" href="{{ url_for('static', filename='icons/favicon.ico') }}">
 
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="{{ url_for('static', filename='vendor/jquery/jquery-1.8.3.min.js') }}"><\/script>')</script>
-    {% assets filters="jsmin", output="min/main.js",
-        'vendor/bootstrap/js/bootstrap.min.js',
-        'vendor/modernizr-2.6.2-respond-1.1.0.min.js',
-        'vendor/jquery/plugins/tmpl.min.js'
-    %}
-        <script type="text/javascript" src="{{ ASSET_URL }}"></script>
-    {% endassets %}
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="{{ url_for('static', filename='vendor/jquery/jquery-2.0.2.min.js') }}"><\/script>')</script>
+    
+    <link rel="stylesheet" href="{{url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css')}}" />
+    <link rel="stylesheet" href="{{url_for('static', filename='vendor/bootstrap/css/bootstrap-responsive.min.css')}}" />
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.3.0/pure-min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}" type="text/css" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='main.css')}}" type="text/css" />
 
-    {% assets filters="cssmin", output="min/main.css",
-      'vendor/bootstrap/css/bootstrap.min.css',
-      'vendor/bootstrap/css/bootstrap-responsive.min.css'
-    %}
-        <link rel="stylesheet" href="{{ ASSET_URL }}" type="text/css" />
-    {% endassets %}
 
     <script id="alert-template" type="text/x-jquery-tmpl">
         <div class="alert alert-${status} fade in">
@@ -55,6 +49,35 @@
     {% endblock %}
     </head>
     <body>
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <!--<div class="container">-->
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="#">Prescription Management System</a>
+            </div>
+            <div class="collapse navbar-collapse">
+             {% if current_user.is_authenticated() %}
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="{{url_for('site_logout')}}">Logout
+                        </a>
+                    </li>
+                </ul>
+                <p class="navbar-text navbar-right">Logged in as <a href="#">Nurse {{current_user.first_name}}</a></p>
+
+            {% else %}
+            <ul class="nav navbar-nav navbar-right">
+            <li><a href="{{url_for('site_login')}}">Login</a></li>
+            <li><a href="{{url_for('site_register')}}">Register</a></li>
+            </ul>
+
+              {% endif %}
+            </div>
+        </div>
+
         <div id="body" class="container">
             {% block content %}{% endblock %}
         </div>
