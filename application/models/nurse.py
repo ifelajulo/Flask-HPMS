@@ -6,7 +6,7 @@ import os
 class Nurse(pdb.Model):
 	id = pdb.Column(pdb.Integer, primary_key=True)
 	nurse_id = pdb.Column(pdb.String(4), unique=True)
-	email = pdb.Column(pdb.String(4))
+	staff_id = pdb.Column(pdb.String(4))
 	password = pdb.Column(pdb.String(80))
 	first_name = pdb.Column(pdb.String(80))
 	last_name = pdb.Column(pdb.String(80))
@@ -33,4 +33,7 @@ class Nurse(pdb.Model):
 	        return False
 
 	def __repr__(self):
-		return "Nurse: " + self.last_name
+		if (self.role == 0):
+			return "Nurse: " + self.last_name
+		else:
+			return "Doctor" + self.last_name

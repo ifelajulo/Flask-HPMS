@@ -1,4 +1,5 @@
 from flask import Flask
+from application.config import Config as wconfig
 from application.config import DevelopmentConfig
 from application.config import ProductionConfig
 from flask.ext.assets import Environment
@@ -9,6 +10,7 @@ from flask.ext.admin.contrib.sqla import ModelView
 from flask.ext.security import Security, SQLAlchemyUserDatastore
 from flask.ext.migrate import Migrate, MigrateCommand
 from flask.ext.script import Manager
+import dataset
 
 
 import os
@@ -25,7 +27,12 @@ if 'APP_ENV' in os.environ and os.environ['APP_ENV'] == 'production':
 else:
     app.config.from_object(DevelopmentConfig)
 
+var = wconfig.SQLALCHEMY_DATABASE_URI
 pdb = SQLAlchemy(app)
+ds = dataset.connect(var)
+
+#print ds.tables
+#print ds
 migrate = Migrate(app, pdb)
 
 manager = Manager(app)
@@ -63,7 +70,7 @@ def load_user(email):
 # import models
 #from application.models.staff import User as PUser, Role
 #from application.models.nurse import Nurse, Doctor, Patient
-from application.models.user import User, Doctor, Patient
+from application.models.user import User, Doctor, Patient, Diagnosis, Prescription
 
 # Setup Flask Security
 #user_datastore = SQLAlchemyUserDatastore(pdb, User2, Role)
@@ -74,6 +81,8 @@ from application.models.user import User, Doctor, Patient
 admin.add_view(ModelView(User, pdb.session))
 admin.add_view(ModelView(Doctor, pdb.session))
 admin.add_view(ModelView(Patient, pdb.session))
+admin.add_view(ModelView(Diagnosis, pdb.session))
+admin.add_view(ModelView(Prescription, pdb.session))
 
 
 

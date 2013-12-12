@@ -7,38 +7,16 @@
 {% block content %}
 
 	{% if current_user.is_authenticated() %}
+	  <div class="pure-g-r" id="layout">
 
+    {% include 'site/sidebar.html' %}
 
-	    <div class="pure-g-r" id="layout">
-
- 		<div class="sidebar pure-u">
-
- 		<header class="header">
-			<hgroup>
-                <h1 class="brand-title">Your Patients</h1>
-                <h2 class="brand-tagline">You're taking care of these people!</h2>
-            </hgroup>
- 		</header>
-
-
-			<div class="patients">
-
-
- 			Will this even show?
- 			<p>This layout stuff is annoying.</p>
-				<ul>
-				{% for patient in current_user.patients %}
-				  <li><a href="/dashboard/{{ patient.id }}/">{{ patient }}</a></li>
-				{% endfor %}
-				</ul>
-			</div>
- 		</div>
-
+    
  		<div class="pure-u">
  			<div class="content">
             <!-- A wrapper for all the blog posts -->
-            <div class="posts">
-                <h1 class="post-header">Selected Patient Information</h1>
+            <div class="patients-list">
+                <h1 class="patient-header">Selected Patient Information</h1>
                       <p><strong>Patient's Name</strong></p>
                       <p><strong>DOA:</strong> 11/07/2013</p>
                       <p><strong>DOB:</strong> 10/28/1978</p>
