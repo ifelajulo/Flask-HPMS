@@ -1,13 +1,12 @@
 {% from "_form_helpers.html" import render_field %}
-{% extends 'layout.html' %}
+{% extends 'pure_layout.html' %}
 {% block title %}Login{% endblock %}
 {% block head %}
     {{ super() }}
 {% endblock %}
 
 {% block content %}
-    <div class="row">
-        <div class=".col-md-6 .col-md-offset-3">
+    <div class="container pure-u">
             <form name="login" role="form" method="POST">
                 {{ form.csrf_token }}
                 {{ render_field(form.staff_id) }}
@@ -21,5 +20,4 @@
                 </div>
             </form>
         </div>
-    </div>
 {% endblock %}

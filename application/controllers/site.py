@@ -34,11 +34,8 @@ def staff_dashboard():
     print current_user.patients
     print current_user.patients.count()
 
-    if current_user.role == 0:
-        return render_template('site/dashboard.html')
-    else:
-        return render_template('site/dashboard_doctor.html')
-    
+    return render_template('site/dashboard.html')
+
     #return render_template('site/dashboard.html')
 
 
