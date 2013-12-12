@@ -1,0 +1,18 @@
+ 		<div class="sidebar pure-u">
+
+ 		<header class="header">
+			<hgroup>
+                <h1 class="brand-title">Your Patients</h1>
+                <h2 class="brand-tagline">You're taking care of these people!</h2>
+            </hgroup>
+ 		</header>
+
+
+		<div class="patients">
+				<ul>
+				{% for patient in current_user.patients %}
+				  <li><a class="patient-link" patient="{{patient.id}}" href="/dashboard/patients/{{patient.id}}/">{{ patient }}</a></li>
+				{% endfor %}
+				</ul>
+			</div>
+ 		</div>

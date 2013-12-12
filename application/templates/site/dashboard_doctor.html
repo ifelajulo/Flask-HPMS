@@ -1,0 +1,63 @@
+{% extends 'pure_layout.html' %}
+{% block title %}Home{% endblock %}
+{% block head %}
+    {{ super() }}
+{% endblock %}
+
+{% block content %}
+
+	{% if current_user.is_authenticated() %}
+
+
+	    <div class="pure-g-r" id="layout">
+
+    {% include 'site/sidebar.html' %}
+
+ 		<div class="pure-u">
+ 			<div class="content">
+
+            <div class="throbber">
+              {% include 'site/throbber.html' %}
+            </div>
+
+            <!-- A wrapper for all the blog posts -->
+            <div class="patients-list">
+                <h1 class="post-header">Selected Patient Information</h1>
+                      <p class="pname"><strong>Patient's Name</strong></p>
+                      <p class="pdoa"><strong>DOA:</strong> </p>
+                      <p class="pdob"><strong>DOB:</strong> </p>
+                      <p class="age"><strong>Age:</strong> 35</p>
+                      <p class="sex"><strong>Sex:</strong> Male</p>
+                      <p class="admission"><strong>Reason for Admission:</strong> Migraines</p>
+                      <p class="other_info"></p>
+            </div>
+
+            <footer class="footer">
+                <div class="pure-menu pure-menu-horizontal pure-menu-open">
+                    <ul>
+                        <li><a href="http://iheanyi.com">Iheanyi Ekechukwu</a></li>
+
+                    </ul>
+                </div>
+            </footer>
+        </div>
+ 		</div>
+
+ 		<div class="right-sidebar pure-u">
+		 		<header class="header">
+			<hgroup>
+                <h1 class="brand-title">Prescription Reminders Here</h1>
+                <h2 class="brand-tagline">Don't forget their medicine!</h2>
+            </hgroup>
+ 		</header>
+ 		</div>
+ 	</div>
+	{% else %}
+	            <div class="pure-g-r" id="layout">
+
+
+
+	<h2>Please Login!</h2>
+</div>
+	{% endif %}
+{% endblock %}
