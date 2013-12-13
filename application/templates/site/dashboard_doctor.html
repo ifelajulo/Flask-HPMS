@@ -22,7 +22,9 @@
 
             <!-- A wrapper for all the blog posts -->
             <div class="patients-list">
-                <h1 class="post-header">Selected Patient Information</h1>
+
+                {% if patient %}
+                <h1 class="post-header">{%patient %}</h1>
                       <p class="pname"><strong>Patient's Name</strong></p>
                       <p class="pdoa"><strong>DOA:</strong> </p>
                       <p class="pdob"><strong>DOB:</strong> </p>

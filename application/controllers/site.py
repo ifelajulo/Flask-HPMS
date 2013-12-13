@@ -53,15 +53,20 @@ def fetch_patient(patient_id):
         table = ds['patient']
         select_user = table.find_one(id=patient_id)
 
+        print select_user
+
         print selected_patient, select_user
         json_user = jsonify(select_user)
         print json_user
         select_user['diagnoses'] = []
-        #select_user['diagnoses'].append(patient_diag[0])
+        #select_user['diagnoses'].append(patient_diag[
+        #0])
         #select_user['diagnoses'].extend(patient_diag)
         print "Trying to get a response."
        # response = json.dumps(selected_patient)
-        return jsonify(select_user)
+        #return jsonify(select_user)
+        #
+        return render_template('site/dashboard.html', patient=selected_patient)
 
        # print response
         #response.content_type='application/json'

@@ -22,14 +22,21 @@
 
             <!-- A wrapper for all the blog posts -->
             <div class="patients-list">
-                <h1 class="post-header">Selected Patient Information</h1>
-                      <p class="pname"><strong>Patient's Name</strong></p>
-                      <p class="pdoa"><strong>DOA:</strong> </p>
-                      <p class="pdob"><strong>DOB:</strong> </p>
-                      <p class="age"><strong>Age:</strong> 35</p>
-                      <p class="sex"><strong>Sex:</strong> Male</p>
-                      <p class="admission"><strong>Reason for Admission:</strong> Migraines</p>
-                      <p class="other_info"></p>
+                {% if patient %}
+                <h1 class="post-header">{{ patient }}</h1>  
+                      <p>
+                      <p class="pdoa"><strong>DOA:</strong> {{patient.date_of_admission}}</p>
+                      <p class="pdob"><strong>DOB:</strong> {{patient.date_of_birth}} </p>
+                      <p class="sex"><strong>Sex:</strong>
+                        {% if patient.sex == 1 %}
+                          Male
+                        {% else %}
+                          Female
+                        {% endif %}
+                      </p>
+                      <p class="admission"><strong>Reason for Admission:</strong> {{patient.diagnoses}}</p>
+                      <p class="other_info"><strong>Other Info: </strong> {{patient.other_info}}</p>
+                {% endif %}
             </div>
 
             <footer class="footer">
@@ -50,6 +57,24 @@
                 <h2 class="brand-tagline">Don't forget their medicine!</h2>
             </hgroup>
     </header>
+
+
+    <div class="rx-list">
+    <center><a class="pure-button pure-button-primary">Add New Medication</a></center>
+
+      {% if patient %}
+      <ul>
+      {% for med in patient.prescriptions %}
+
+        {% if med.frequency %}
+          <li>{{med}} - Take every {{med.frequency}} hours</li>
+          {% else %}
+          <li>{{med}} - Take as needed/requested.</li>
+          {% endif %}
+      {% endfor %}
+            </ul>
+      {% endif %}
+    </div>
     </div>
   </div>
   {% else %}

@@ -11,7 +11,7 @@ from flask.ext.security import Security, SQLAlchemyUserDatastore
 from flask.ext.migrate import Migrate, MigrateCommand
 from flask.ext.script import Manager
 import dataset
-
+from datetime import datetime, date
 
 import os
 
@@ -91,3 +91,18 @@ import application.forms.login
 
 # import controllers
 import application.controllers.site
+
+#Custom helper functions
+def get_age(person):
+	today = date.today()
+	born = person.date_of_birth
+	try: 
+		birthday = born.replace(year=today.year)
+	except ValueError: # raised when birth date is February 29 and the current year is not a leap year
+		birthday = born.replace(year=today.year, day=born.day-1)
+	if birthday > today:
+		return today.year - born.year - 1
+	else:
+		return today.year - born.year
+
+app.jinja_env.globals.update(get_age=get_age)

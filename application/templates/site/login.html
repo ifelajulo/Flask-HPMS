@@ -6,18 +6,25 @@
 {% endblock %}
 
 {% block content %}
-    <div class="container pure-u">
-            <form name="login" role="form" method="POST">
+    <div class="pure-u">
+            <form name="login" class="pure-form pure-form-aligned" role="form" method="POST">
+                <fieldset>
                 {{ form.csrf_token }}
-                {{ render_field(form.staff_id) }}
 
-                <div class="form-group">
+                <div class="pure-control-group">
+                {{ render_field(form.staff_id) }}
+                </div>
+
+                <div class="pure-control-group">
                     {{ render_field(form.password) }}
 
                 </div>
-                <div class="form-group">
-                        <button type="submit" class="btn btn-default">Submit</button>
+
+                <div class="pure-controls">
+                    <button type="submit" class="pure-button pure-button-primary">Submit</button>
                 </div>
+
+                </fieldset>
             </form>
         </div>
-{% endblock %}
+{% endblock %}  

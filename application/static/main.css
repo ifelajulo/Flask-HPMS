@@ -17,6 +17,13 @@ a:focus {
     text-decoration: underline;
 }
 
+
+.rx-list {
+    padding-top: 8px;
+}
+li p {
+    font-size: 75%;
+}
 /* LAYOUT CSS */
 #layout {
     padding-left: 25%; /* "left col (nav + list)" width */
@@ -38,7 +45,7 @@ a:focus {
 }
 
 .patients {
-	padding: 7%;
+	padding: 7% 7% 7% 10%;
 }
 
 .right-sidebar {
@@ -131,7 +138,15 @@ header.header {
     padding: 2em 3em 0;
 }
 
+.patients ul {
+    list-style: none;
+    border: 1px solid rgb(142, 142, 214);
+    padding-left: 0;
+}
 
+.patients ul li {
+    padding: 2px;
+}
 .throbber {
 }
 

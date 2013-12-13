@@ -12,18 +12,23 @@
     <meta name="viewport" content="width=device-width">
 
     <link rel="shortcut icon" href="{{ url_for('static', filename='icons/favicon.ico') }}">
-
+    <script src="{{url_for('static', filename='alertify.js')}}"></script>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="{{ url_for('static', filename='vendor/jquery/jquery-2.0.2.min.js') }}"><\/script>')</script>
-    
 
+    {% if current_user.is_authenticated() %}
     <script src="{{url_for('static', filename='main.js')}}"></script>
-    <link rel="stylesheet" href="{{url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css')}}" />
+    {% endif %}
+<!--    <link rel="stylesheet" href="{{url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css')}}" />
     <link rel="stylesheet" href="{{url_for('static', filename='vendor/bootstrap/css/bootstrap-responsive.min.css')}}" />
-    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css" />-->
     <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.3.0/pure-min.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='main.css')}}" type="text/css" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='alertify.core.css')}}" type="text/css" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='alertify.default.css')}}" type="text/css" />
     <link rel="stylesheet" href="{{ url_for('static', filename='throbber.css')}}" type="text/css" />
+
+
 
 
 
@@ -55,7 +60,7 @@
     <body>
             <div class="header">
                 <div class="pure-menu pure-menu-open pure-menu-fixed pure-menu-horizontal">
-                    <a class="pure-menu-heading" href="">Prescription Management System</a>
+                    <a class="pure-menu-heading" href="{{url_for('site_index')}}">Prescription Management System</a>
 
 
                     <ul class="">

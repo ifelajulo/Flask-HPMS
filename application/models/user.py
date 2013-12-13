@@ -2,7 +2,7 @@ from application import pdb
 from flask.ext.security import UserMixin, RoleMixin
 import os
 import hashlib
-from datetime import datetime
+from datetime import datetime, date
 
 
 prescriptions = pdb.Table('prescriptions', 
@@ -95,6 +95,7 @@ class Patient(pdb.Model):
 
     def __repr__(self):
         return self.first_name + " " + self.last_name
+
 
 class Prescription(pdb.Model):
     id = pdb.Column(pdb.Integer, primary_key=True)
