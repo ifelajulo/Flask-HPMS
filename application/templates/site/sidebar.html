@@ -8,6 +8,7 @@
  		</header>
 
 		<div class="patients">
+
 				<ul class="p-list">
 				{% for patient in current_user.patients|sort(attribute='date_of_birth') %}
 				  <li class="patient-sel" medi="{{patient.prescriptions|first}}" pat="{{patient}}"><a class="patient-link pat" patient="{{patient.id}}" href="/dashboard/patients/{{patient.id}}/">{{ patient }}</a>

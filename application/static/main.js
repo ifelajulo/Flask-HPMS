@@ -11,7 +11,7 @@ $(document).ready (function() {
 
 	var myVar = setInterval(function() {
 		sendAlert();
-	}, 1000*60*5);
+	}, 1000*30);
 
 	var i = 1;
 	console.log($('.pat'));
@@ -28,7 +28,7 @@ $(document).ready (function() {
 		
 
 
-	alertify.log("Just an example of a reminder that will pop up to alert nurses.", "", 5000);
+	//alertify.log("Just an example of a reminder that will pop up to alert nurses.", "", 0);
 
 	function sendAlert() {
 		var patient_name = $("ul li:eq(" + i + ")");
