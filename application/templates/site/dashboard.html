@@ -25,8 +25,8 @@
                 {% if patient %}
                 <h1 class="post-header">{{ patient }}</h1>  
                       <p>
-                      <p class="pdoa"><strong>DOA:</strong> {{patient.date_of_admission}}</p>
-                      <p class="pdob"><strong>DOB:</strong> {{patient.date_of_birth}} </p>
+                      <p class="pdoa"><strong>Date of Admission:</strong> {{patient.date_of_admission}}</p>
+                      <p class="pdob"><strong>Date of Birth:</strong> {{patient.date_of_birth}} </p>
                       <p class="sex"><strong>Sex:</strong>
                         {% if patient.sex == 1 %}
                           Male
@@ -35,7 +35,7 @@
                         {% endif %}
                       </p>
                       <p class="admission"><strong>Reason for Admission:</strong> {{patient.diagnoses}}</p>
-                      <p class="other_info"><strong>Other Info: </strong> {{patient.other_info}}</p>
+                      <p class="other_info"><strong>Additional Information: </strong> {{patient.other_info}}</p>
                 {% endif %}
             </div>
 
@@ -59,20 +59,20 @@
     </header>
 
 
-    <div class="rx-list">
+    <div class="prescriptions">
 
     {% if current_user.role == 1 %}
     <center><a  href="/admin/prescriptionview/" class="pure-button pure-button-primary">Add New Medication</a></center>
     {% endif %}
 
       {% if patient %}
-      <ul>
+      <ul class="">
       {% for med in patient.prescriptions %}
 
         {% if med.frequency %}
-          <li>{{med}} - Take every {{med.frequency}} hours</li>
+          <li class="patient-sel"><strong>{{med}}</strong> - Take every {{med.frequency}} hours</li>
           {% else %}
-          <li>{{med}} - Take as needed/requested.</li>
+          <li class="patient-sel"><strong>{{med}}</strong> - Take as needed/requested.</li>
           {% endif %}
       {% endfor %}
             </ul>

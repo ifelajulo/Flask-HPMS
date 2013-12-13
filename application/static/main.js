@@ -28,7 +28,7 @@ $(document).ready (function() {
 		
 
 
-	alertify.log("Just an example of a reminder that will pop up to alert nurses.");
+	alertify.log("Just an example of a reminder that will pop up to alert nurses.", "", 5000);
 
 	function sendAlert() {
 		var patient_name = $("ul li:eq(" + i + ")");
