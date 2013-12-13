@@ -25,8 +25,7 @@ $(document).ready (function() {
 	console.log(random);
 
 	random_element = $("ul li:eq(" + random + ")");
-		
-
+	
 
 	//alertify.log("Just an example of a reminder that will pop up to alert nurses.", "", 0);
 
@@ -39,7 +38,7 @@ $(document).ready (function() {
 		//alertify.log($(patient_name).attr("pat") + " requires their medication " + $(patient_name).attr("medi"));
 		//alertify.log("A patient requires their medication!","",0);
 		//
-		alertify.log("Medication Reminder Alert: Patient Jesse Daniel Requires Medication now!");
+		alertify.log("Medication Reminder Alert: Patient Jesse Daniel Requires Medication now.");
 
 		// Talk abou
 
