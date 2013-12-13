@@ -60,7 +60,10 @@
 
 
     <div class="rx-list">
-    <center><a class="pure-button pure-button-primary">Add New Medication</a></center>
+
+    {% if current_user.role == 1 %}
+    <center><a  href="/admin/prescriptionview/" class="pure-button pure-button-primary">Add New Medication</a></center>
+    {% endif %}
 
       {% if patient %}
       <ul>
