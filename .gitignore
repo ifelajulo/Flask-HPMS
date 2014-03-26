@@ -5,3 +5,8 @@ application/static/.webassets-cache/*
 application/static/min/*
 config.py
 application/config.py
+*.pyc
+readData.py
+data.txt
+migrations/
+
